@@ -46,10 +46,13 @@ const staticOptions = {
   }
 };
 
-// Serve static assets for subdirectories like blog
+// Serve static assets for subdirectories like blog and aari-class
 app.use('/blog/img', express.static(path.join(staticRoot, 'img'), staticOptions));
 app.use('/blog/style', express.static(path.join(staticRoot, 'style'), staticOptions));
 app.use('/blog/js', express.static(path.join(staticRoot, 'js'), staticOptions));
+app.use('/aari-class/img', express.static(path.join(staticRoot, 'img'), staticOptions));
+app.use('/aari-class/style', express.static(path.join(staticRoot, 'style'), staticOptions));
+app.use('/aari-class/js', express.static(path.join(staticRoot, 'js'), staticOptions));
 
 // Explicit SEO endpoints
 app.get('/robots.txt', (req, res) => {
@@ -82,13 +85,25 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(staticRoot, 'favicon.ico'));
 });
 
-// Handle /blog explicitly so directory lookup doesn't override blog.html
-app.get(['/blog', '/blog/'], (req, res) => {
+// Explicit page routes
+app.get(['/blog', '/blog/', '/blog.html'], (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+  if (fs.existsSync(path.join(staticRoot, 'blog', 'index.html'))) {
+    return res.sendFile(path.join(staticRoot, 'blog', 'index.html'));
+  }
   res.sendFile(path.join(staticRoot, 'blog.html'));
 });
 
-// Handle /aari-class explicitly
-app.get(['/aari-class', '/aari-class/'], (req, res) => {
+app.get(['/blog/bridal-makeup', '/blog/bridal-makeup/', '/blog/bridal-makeup.html'], (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+  res.sendFile(path.join(staticRoot, 'blog', 'bridal-makeup.html'));
+});
+
+app.get(['/aari-class', '/aari-class/', '/aari-class.html'], (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+  if (fs.existsSync(path.join(staticRoot, 'aari-class', 'index.html'))) {
+    return res.sendFile(path.join(staticRoot, 'aari-class', 'index.html'));
+  }
   res.sendFile(path.join(staticRoot, 'aari-class.html'));
 });
 

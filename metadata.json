@@ -1,6 +1,6 @@
 {
-  "name": "Remix lavender-1",
-  "description": "Imported from GitHub: raja-143-code/lavender-1",
+  "name": "Lavender Park Beauty Parlour",
+  "description": "Professional bridal makeup, hair styling, facials, nail art, and Aari embroidery training in Gopalpatti, Dindigul.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
