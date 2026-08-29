@@ -1,0 +1,8 @@
+{
+  "name": "Remix lavender-1",
+  "description": "Imported from GitHub: raja-143-code/lavender-1",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
